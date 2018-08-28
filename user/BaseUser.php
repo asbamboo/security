@@ -3,6 +3,7 @@ namespace asbamboo\security\user;
 
 /**
  * 基础用户类型
+ *
  * @author 李春寅 <licy2013@aliyun.com>
  * @since 2018年3月10日
  */
