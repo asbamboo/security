@@ -4,6 +4,8 @@ namespace asbamboo\security\user\login;
 use asbamboo\http\ServerRequestInterface;
 use asbamboo\security\user\token\UserTokenInterface;
 use asbamboo\security\user\AnonymousUser;
+use asbamboo\event\EventScheduler;
+use asbamboo\security\Event;
 
 /**
  * 注销登录
@@ -37,6 +39,12 @@ class BaseLogout implements LogoutInterface
     {
         $user   = new AnonymousUser();
         $this->UserToken->setUser($user);
+
+        /*
+         * 触发事件
+         */
+        EventScheduler::instance()->on(Event::LOGOUT_SUCCESS, $this->UserToken);
+
         return true;
     }
 }

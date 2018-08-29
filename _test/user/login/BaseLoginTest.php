@@ -55,10 +55,10 @@ class BaseLoginTest extends TestCase
     {
         $_POST[$input_name]      = 'not_exists_username';
         $_POST[$input_password]  = 'not_exists_password';
-        $request                    = new Request();
+        $Request                    = new Request();
 
         $this->expectException(UserNotExistsException::class);
-        static::$login->handler($request);
+        static::$login->handler($Request);
     }
 
     /**
@@ -70,10 +70,10 @@ class BaseLoginTest extends TestCase
     {
         $_POST[$input_name]      = static::$login_name;
         $_POST[$input_password]  = 'error password';
-        $request                    = new Request();
+        $Request                    = new Request();
 
         $this->expectException(NotEqualPasswordException::class);
-        static::$login->handler($request);
+        static::$login->handler($Request);
     }
 
     /**
@@ -85,9 +85,9 @@ class BaseLoginTest extends TestCase
     {
         $_POST[$input_name]      = static::$login_name;
         $_POST[$input_password]  = static::$login_password;
-        $request                    = new Request();
+        $Request                    = new Request();
 
-        $handler                = static::$login->handler($request);
+        $handler                = static::$login->handler($Request);
         $this->assertTrue($handler);
     }
 }

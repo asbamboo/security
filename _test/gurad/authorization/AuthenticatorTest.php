@@ -1,11 +1,14 @@
 <?php
-namespace asbamboo\security\gurad\authorization;
+namespace asbamboo\security\_test\gurad\authorization;
 
 use asbamboo\security\exception\AccessDeniedException;
 use PHPUnit\Framework\TestCase;
 use asbamboo\security\user\AnonymousUser;
 use asbamboo\http\ServerRequest;
 use asbamboo\security\user\Role;
+use asbamboo\security\gurad\authorization\Rule;
+use asbamboo\security\gurad\authorization\RuleCollection;
+use asbamboo\security\gurad\authorization\Authenticator;
 
 /**
  * 测试权限认证器
@@ -19,15 +22,15 @@ class AuthenticatorTest extends TestCase
      */
     public function testValidate1()
     {
-        $user           = new AnonymousUser();
-        $request        = new ServerRequest();
-        $rule           = new Rule('$user->getRoles() == ["r1"] && strpos($request->getPath(), "/") === 0');
-        $ruleCollection = new RuleCollection();
-        $ruleCollection->addRule($rule);
-        $authenticator  =  new Authenticator($ruleCollection);
+        $User           = new AnonymousUser();
+        $Request        = new ServerRequest();
+        $Rule           = new Rule('$user->getRoles() == ["r1"] && strpos($request->getPath(), "/") === 0');
+        $RuleCollection = new RuleCollection();
+        $RuleCollection->addRule($Rule);
+        $authenticator  =  new Authenticator($RuleCollection);
 
         $this->expectException(AccessDeniedException::class);
-        $authenticator->validate($user, $request);
+        $authenticator->validate($User, $Request);
     }
 
     /**
@@ -35,13 +38,13 @@ class AuthenticatorTest extends TestCase
      */
     public function testValidateOk()
     {
-        $user           = new AnonymousUser();
-        $request        = new ServerRequest();
-        $rule           = new Rule('$user->getRoles() == ["' . Role::ANONYMOUS . '"]');
-        $ruleCollection = new RuleCollection();
-        $ruleCollection->addRule($rule);
-        $authenticator  =  new Authenticator($ruleCollection);
+        $User           = new AnonymousUser();
+        $Request        = new ServerRequest();
+        $Rule           = new Rule('$user->getRoles() == ["' . Role::ANONYMOUS . '"]');
+        $RuleCollection = new RuleCollection();
+        $RuleCollection->addRule($Rule);
+        $authenticator  =  new Authenticator($RuleCollection);
 
-        $this->assertTrue($authenticator->validate($user, $request));
+        $this->assertTrue($authenticator->validate($User, $Request));
     }
 }
