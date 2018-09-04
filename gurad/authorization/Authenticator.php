@@ -15,14 +15,14 @@ class Authenticator implements AuthenticatorInterface
     /**
      * @var RuleCollectionInterface
      */
-    private $rules;
+    private $RuleCollection;
 
     /**
-     * @param RuleCollectionInterface $rules
+     * @param RuleCollectionInterface $RuleCollection
      */
-    public function __construct(RuleCollectionInterface $rules)
+    public function __construct(RuleCollectionInterface $RuleCollection)
     {
-        $this->rules    = $rules;
+        $this->RuleCollection    = $RuleCollection;
     }
 
     /**
@@ -31,8 +31,8 @@ class Authenticator implements AuthenticatorInterface
      */
     public function validate(UserInterface $user, ServerRequestInterface $request) : bool
     {
-        foreach($this->rules AS $rule){
-            if(!eval($rule->get())){
+        foreach($this->RuleCollection AS $Rule){
+            if(!eval($Rule->get())){
                 throw new AccessDeniedException("对不起，您没有访问权限。");
             }
         }
