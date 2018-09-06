@@ -83,8 +83,8 @@ class BaseLogin implements LoginInterface
         /*
          * Request 参数
          */
-        $login_name         = $Request->getRequestParam($this->input_name, '');
-        $login_password     = $Request->getRequestParam($this->input_password, '');
+        $login_name         = $Request->getPostParam($this->input_name, '');
+        $login_password     = $Request->getPostParam($this->input_password, '');
 
         /*
          * load user
