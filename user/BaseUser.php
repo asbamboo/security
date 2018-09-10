@@ -76,7 +76,7 @@ class BaseUser implements UserInterface
      */
     public function isEqualPassword(string $password): bool
     {
-        return password_verify($password, $this->login_password);
+        return password_verify($password, $this->getLoginPassword());
     }
 
     /**

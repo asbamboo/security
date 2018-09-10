@@ -15,7 +15,7 @@ class UserToken implements UserTokenInterface
     /**
      * @var SessionInterface
      */
-    protected $session;
+    protected $Session;
 
     /**
      * 存储用户信息的session key
@@ -30,19 +30,19 @@ class UserToken implements UserTokenInterface
     private $anonymous_name;
 
     /**
-     * @param SessionInterface $session
+     * @param SessionInterface $Session
      * @param string $session_key
      * @param string $anonymous_name
      */
-    public function __construct(SessionInterface $session, string $session_key = 'security_user_token', string $anonymous_name = '匿名用户')
+    public function __construct(SessionInterface $Session, string $session_key = 'security_user_token', string $anonymous_name = '匿名用户')
     {
-        $this->session          = $session;
+        $this->Session          = $Session;
         $this->session_key      = $session_key;
         $this->anonymous_name   = $anonymous_name;
     }
 
     /**
-     * 将用户写入到session
+     * 将用户写入到Session
      * {@inheritDoc}
      * @see \asbamboo\security\user\token\UserTokenInterface::setUser()
      */
@@ -50,19 +50,19 @@ class UserToken implements UserTokenInterface
     {
         $serialize_user = serialize($user);
 
-        $this->session->set($this->session_key, $serialize_user);
+        $this->Session->set($this->session_key, $serialize_user);
 
         return $this;
     }
 
     /**
-     * 从session中读取用户信息
+     * 从Session中读取用户信息
      * {@inheritDoc}
      * @see \asbamboo\security\user\token\UserTokenInterface::getUser()
      */
     public function getUser(): UserInterface
     {
-        $serialize_user     = $this->session->get($this->session_key);
+        $serialize_user     = $this->Session->get($this->session_key);
         if($serialize_user){
             $user           = unserialize($serialize_user);
         }else{
