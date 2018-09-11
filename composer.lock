@@ -166,12 +166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asbamboo/session.git",
-                "reference": "a2edc7533a7a57ab50e1c44740ced64cbab89a91"
+                "reference": "813f85f2552cfa1941944f41581be620e55334ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asbamboo/session/zipball/a2edc7533a7a57ab50e1c44740ced64cbab89a91",
-                "reference": "a2edc7533a7a57ab50e1c44740ced64cbab89a91",
+                "url": "https://api.github.com/repos/asbamboo/session/zipball/813f85f2552cfa1941944f41581be620e55334ab",
+                "reference": "813f85f2552cfa1941944f41581be620e55334ab",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 "source": "https://github.com/asbamboo/session/tree/1.0.0",
                 "issues": "https://github.com/asbamboo/session/issues"
             },
-            "time": "2018-09-10T08:33:03+00:00"
+            "time": "2018-09-11T00:56:34+00:00"
         },
         {
             "name": "psr/http-message",
